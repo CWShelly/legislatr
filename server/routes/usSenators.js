@@ -3,7 +3,7 @@ const router = express.Router();
 const knex = require('../../knex');
 const humps = require('humps');
 const camelizeKeys = humps.camelizeKeys;
-const jsonParser = require('body-parser').json();
+const jsonParser = require('body-parser').urlencoded({extended:true});
 
 router.get('/us_senators', (req,res)=>{
     knex('ussenators')
@@ -13,7 +13,9 @@ router.get('/us_senators', (req,res)=>{
 
 
 router.post('/us_senators', jsonParser, (req, res, next)=>{
+    console.log('posting here ');
     console.log(req.body);
+    // console.log(req);
     return knex('ussenators')
 
     .insert(req.body)
