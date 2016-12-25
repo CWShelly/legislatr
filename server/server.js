@@ -1,6 +1,7 @@
 var path = require('path');
 var express = require('express');
 var app = express();
+
 const usSenatorRouter = require(__dirname + '/routes/usSenators.js');
 
 app.use('/api', usSenatorRouter);
@@ -16,6 +17,10 @@ if(process.env.NODE_ENV !== 'production') {
     app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
     app.use(webpackHotMiddleware(compiler));
 }
+
+
+
+
 
 app.use(express.static(path.join(__dirname, '../src')));
 

@@ -1,16 +1,81 @@
 var React = require('react');
 var ReactDOM = require('react-dom')
 
+// var url = "https://api.propublica.org/congress/v1/114/house/members.json"
 
-var items =[]
 
-// var senData = {
-//     id: 5,
-//     name: 'John McCain',
-//     state: 'Arizona',
-//     party: 'Republican',
-//     since: 1987
-// }
+ var url = "https://api.propublica.org/congress/v1/members/new.json"
+
+var items =[];
+
+
+
+
+var GetList = React.createClass({
+    getStuff: function(){
+        console.log('getting stuff');
+
+    // $.getJSON(url, null, function(data){
+    //     console.log('je hais noel');
+    //     console.log(data);
+    // })
+
+        $.ajax({
+           type: 'GET',
+            url:  url,
+            contentType: "application/json",
+            crossDomain: true,
+            beforeSend : function( xhr ) {
+
+
+
+       xhr.setRequestHeader("X-API-Key", myKey)
+
+   },
+           headers: {
+                "content-Type": "application/json",
+
+           },
+
+            xhrFields: {
+                withCredentials: false
+            },
+
+            success: function(data){
+                console.log('success here');
+                console.log(data);
+            },
+            error: function(req,res){
+                console.log(res);
+                console.log('no success');
+            }
+
+        })
+
+        .fail((req, res)=>{
+            console.log('x');
+            console.log(req);
+
+        })
+        .then((x, y, z)=>{
+    
+            // console.log(config);
+            console.log(x, y, z);
+            console.log(z.responseText);
+        })
+
+
+    },
+    render: function(){
+        return(
+            <div>
+            <p>{this.getStuff()}</p>
+            <p>text here</p>
+            </div>
+        )
+    }
+
+})
 
 var GetSen = React.createClass({
 
@@ -43,7 +108,6 @@ var GetSen = React.createClass({
 				</li>
 			);
 		});
-
 		return (
 			<div className='pure-menu'>
 
@@ -55,7 +119,6 @@ var GetSen = React.createClass({
 		);
 	}
 });
-
 
 
 
@@ -111,18 +174,14 @@ var CreateSen = React.createClass({
                 <input type = "text" name ="since" placeholder = "since" />
                 <button type = "submit"> {this.x}</button>
             </form>
-
-
-
-
             )
 
         }
 });
-
 
 ReactDOM.render(<GetSen items={items} />,
 	document.getElementById('app'));
 
     ReactDOM.render(<CreateSen />,
     	document.getElementById('app2'));
+ReactDOM.render(<GetList />, document.getElementById('app3'))

@@ -45,6 +45,12 @@ module.exports = {
         ]
     },
     plugins: [
+
+        new webpack.DefinePlugin({
+
+            'myKey': JSON.stringify(process.env.PROPUBLICA)
+
+        }),
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'src', 'index.html'),
             files: {

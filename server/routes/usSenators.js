@@ -4,6 +4,7 @@ const knex = require('../../knex');
 const humps = require('humps');
 const camelizeKeys = humps.camelizeKeys;
 const jsonParser = require('body-parser').urlencoded({extended:true});
+const agent = require ('superagent');
 
 router.get('/us_senators', (req,res)=>{
     knex('ussenators')
@@ -11,6 +12,7 @@ router.get('/us_senators', (req,res)=>{
     .catch((err)=> next(err));
 });
 
+// console.log(process.env.PROPUBLICA);
 
 router.post('/us_senators', jsonParser, (req, res, next)=>{
     console.log('posting here ');

@@ -14,15 +14,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express-request-proxy": "^2.0.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "html-loader": "^0.4.4",
     "html-webpack-plugin": "^2.24.1",
-    "webpack": "^1.14.0",
-    "webpack-dev-server": "^1.16.2",
+    "knex": "^0.12.6",
+    "pg": "^6.1.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
-    "knex": "^0.12.6",
-    "pg": "^6.1.0"
+    "superagent": "^3.3.1",
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
   },
   "devDependencies": {
     "babel-core": "^6.21.0",
